@@ -178,6 +178,8 @@
     };
     var navbar_resize_load = function() {
         $(".nav-bar").addClass('visible-xs');
+        $("#header-w1200-h").hide();
+        $("#footer").hide();
         if ($(".nav-header").css("display") == "block") {
             $(".nav-bar").addClass('nav-mobile');
             $('.nav-menu').find("li.active").addClass("active-mobile");
@@ -186,12 +188,15 @@
             $(".nav-bar").removeClass('nav-mobile');
         }
 
-        if ($(window).width() >= 943) {           
+        if ($(window).width() >= 943) {  
+            $("#header-w1200-h").show();  
+            $("#footer").show();       
             $(".dropdown-mega-menu a, .nav-menu li:has( > ul) a").each(function () {
                 $(this).parent().children("ul, .mega-menu").slideUp(0);
             });
             $($(".nav-toggle").data("toggle")).show();
             $('.nav-menu').find("li").removeClass("active-mobile");
+            
         }
     };
 
@@ -220,7 +225,7 @@
      Carousel slider initiation
     -------------------------------------*/
     var owl_carousel = function() {
-        $('.owl-slider').each(function () {
+        $('.owl-slider').each(function () {           
             var carousel = $(this),
                 autoplay_hover_pause = carousel.data('autoplay-hover-pause'),
                 loop = carousel.data('loop'),
@@ -252,7 +257,7 @@
             carousel.owlCarousel({
                 autoplayHoverPause: autoplay_hover_pause,
                 loop: (loop ? loop : false),
-                items: (items_general ? items_general : 1),
+                items: (items_general ? items_general : 1),               
                 lazyLoad: true,
                 margin: (margin ? margin : 0),
                 autoplay: (autoplay ? autoplay : false),
@@ -263,7 +268,7 @@
                 navText: ["<i class='fa fa-angle-left' aria-hidden='true'></i>", "<i class='fa fa-angle-right' aria-hidden='true'></i>"],
                 navSpeed: (navSpeed ? navSpeed : false),
                 center: (center ? center : false),
-                responsiveClass: true,
+                responsiveClass: true, 
                 responsive: {
                     0: {
                         items: ( xxs_items ? xxs_items : (items_general ? items_general : 1)),
@@ -291,10 +296,15 @@
                         dots: ( lg_dots ? lg_dots : (dots_global ? dots_global : false))
                     }
                 }
-            });
+            },
+           
+        
+        
+        );
 
         });
     };
+   
 
     /*-------------------------------------
      Flexslider

@@ -6754,4 +6754,33 @@ button.close {
     display: none !important;
   }
 }
+@media ( min-width : 1200px) {
+  .col-lg-5ths {
+    width: 19.7%;
+    float: left;
+    padding-left: 15px !important;
+    padding-right:0px !important;
+   
+  }
+}
+@media ( min-width : 768px) {
+  .col-sm-5ths {
+    width: 19.7%;      
+    float: left;
+  }
+}
+@media ( min-width : 992px) {
+  .col-md-5ths {
+    width: 19.7%;
+    float: left;
+  }
+}
+
+.col-xs-5ths, .col-sm-5ths, .col-md-5ths, .col-lg-5ths {
+  position: relative;
+  min-height: 0px;
+  padding-left: 15px;
+  padding-right: 15px;
+
+}
 /*# sourceMappingURL=bootstrap.css.map */
