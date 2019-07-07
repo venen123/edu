@@ -1,519 +1,762 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!--[if lt IE 9 ]> <html lang="en" dir="ltr" class="no-js ie-old"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" dir="ltr" class="no-js ie9"> <![endif]-->
+<!--[if IE 10 ]> <html lang="en" dir="ltr" class="no-js ie10"> <![endif]-->
+<!--[if (gt IE 10)|!(IE)]><!-->
+<html lang="en" dir="ltr" class="no-js">
+<!--<![endif]-->
+
 <head>
-    <title>Untitled Documentss333</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <link type="text/css" href="resources/css/reset.css" rel="Stylesheet" />
-    <link type="text/css" href="resources/css/default.css" rel="Stylesheet" />
-    <!--<link href='https://fonts.googleapis.com/css?family=Nunito:300' rel='stylesheet' type='text/css'>-->
-
-    <script type="text/javascript">
-        if (location.href.toString().indexOf('file://localhost/') == 0) {
-            location.href = location.href.toString().replace('file://localhost/', 'file:///');
-        }
-    </script>
-
-    <!-- 8.0.0.3382 -->
-<script src="resources/scripts/jquery-1.7.1.min.js"></script>
-<script src="resources/scripts/startPre.js"></script>
-<script src="data/document.js"></script>
-
-    <style type="text/css">
-
-#outerContainer {
-	width:1004444440px;
-	height:15004444444px;
-}
-
-.vsplitbar {
-    width: 3px;
-    /*background: #B9B9B9;*/
-    border-right: 1px solid #8f949a;
-}
-
-.vsplitbar:hover, .vsplitbar.active {
-    background: #8f949a;
-}
-
-#rightPanel {
-    background-color: White;
-}
-
-/*#leftPanel {
-    min-width: 120px;
-}*/
-
-.splitterMask {
-   position:absolute;
-   top: 0;
-   left: 0;
-   width: 100%;
-   height: 100%;
-   overflow: hidden;
-   background-image: url(resources/images/transparent.gif);
-   z-index: 20000;
-}
-
-    </style>
-    <script type="text/javascript" language="JavaScript"><!--
-        var SITEMAP_COLLAPSE_VAR_NAME = 'c';
-        var PLUGIN_VAR_NAME = 'g';
-        var FOOTNOTES_VAR_NAME = 'fn';
-        var ADAPTIVE_VIEW_VAR_NAME = 'view';
-        var lastLeftPanelWidth = 295;
-        var toolBarOnly = true;
-
-        // isolate scope
-        (function() {
-            setUpController();
-            
-            var configuration = $axure.document.configuration;
-            var _settings = {};
-            _settings.projectId = configuration.prototypeId;
-            _settings.isAxshare = configuration.isAxshare;
-            _settings.loadFeedbackPlugin = configuration.loadFeedbackPlugin;
-            var cHash = getHashStringVar(SITEMAP_COLLAPSE_VAR_NAME);
-            _settings.startCollapsed = cHash == "1";
-            if(cHash == "2") closePlayer();
-            var gHash = getHashStringVar(PLUGIN_VAR_NAME);
-            if(gHash == "") gHash = 1;
-            _settings.startPluginGid = gHash;
-
-            $axure.player.settings = _settings;
-
-            $(window).bind('load', function() {
-                if(CHROME_5_LOCAL && !$('body').attr('pluginDetected')) {
-                    window.location = 'resources/chrome/chrome.html';
-                }
-            });
-
-            $(document).ready(function() {
-                $axure.page.bind('load.start', mainFrame_onload);
-                $axure.messageCenter.addMessageListener(messageCenter_message);
-
-                $(document).on('pluginShown', function (event, data) {
-                    setVarInCurrentUrlHash('g', data ? data : '');
-                });
-
-                $(document).on('pluginCreated', function(event, data) {
-                    if($axure.player.settings.startPluginGid == data) {
-                        $axure.player.showPlugin(data);
-                    }
-                });
-
-                if($axure.player.settings.loadFeedbackPlugin) {
-                    if($axure.player.settings.isAxshare) {
-                        $axure.utils.loadJS('/Scripts/plugins/feedback/feedback8.js');
-                    } else {
-                        $axure.utils.loadJS('http://share.axure.com/Scripts/plugins/feedback/feedback8.js');
-                    }
-                }
-
-                if(navigator.userAgent.indexOf("MSIE") >= 0) $('#outerContainer').width('100%');
-                initialize();
-                if($axure.player.settings.startCollapsed) $('#outerContainer').splitter({ sizeLeft: 0 });
-                else $('#outerContainer').splitter({ sizeLeft: lastLeftPanelWidth });
-                $('#leftPanel').width(lastLeftPanelWidth);
-                
-                $(window).resize(function() { resizeContent(); });
-
-                $('#maximizePanelContainer').hide();
-
-                initializeLogo();
-
-                $(window).resize();
-                resizeContent();
-                
-                $axure.player.collapseToBar();
-
-                if($axure.player.settings.startCollapsed) {
-                    collapse();
-                    $('#leftPanel').width(0);
-                }
-
-                if(MOBILE_DEVICE) {
-                    $('#interfaceControlFrameMinimizeContainer').height('45px');
-                    $('#interfaceControlFrameMinimizeContainer a').height('45px');
-                    $('#interfaceControlFrameHeaderContainer').css('margin-top','45px');
-                    $('#interfaceControlFrameCloseContainer a').css('padding','10px 0px');
-                    $('#maximizePanelContainer').height('45px');//.css('top','inherit').css('bottom','0px');
-
-                    $('body').removeClass('hashover');
-
-                    if(IOS) {
-                        $('#rightPanel').css('overflow', 'auto').css('-webkit-overflow-scrolling', 'touch').css('-ms-overflow-x', 'hidden');
-
-                        window.addEventListener("orientationchange", function() {
-                            var viewport = document.querySelector("meta[name=viewport]");
-                            //so iOS doesn't zoom when switching back to portrait
-                            viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0');
-                            viewport.setAttribute('content', 'width=device-width, initial-scale=1.0');
-                            resizeContent();
-                        }, false);
-
-                        $axure.page.bind('load.start', function() {
-                            resizeContent();
-                        });
-                    }
-                }
-
-            });
-
-            function initialize() {
-                var legacyQString = getQueryString("Page");
-                if (legacyQString.length > 0) {
-                    location.href = location.href.substring(0, location.href.indexOf("?")) + "#p=" + legacyQString;
-                    return;
-                }
-
-                var mainFrame = document.getElementById("mainFrame");
-                //if it's local file on safari, test if we can access mainframe after its loaded
-                if(SAFARI && document.location.href.indexOf('file://') >= 0) {
-                    $(mainFrame).load(function () {
-                        var canAccess;
-                        try {
-                            var mainFrameWindow = mainFrame.contentWindow || mainFrame.contentDocument;
-                            mainFrameWindow['safari_file_CORS'] = 'Y';
-                            canAccess = mainFrameWindow['safari_file_CORS'] === 'Y';
-                        } catch(err) {
-                            canAccess = false;
-                        }
-
-                        if(!canAccess) window.location = 'resources/chrome/safari.html';
-                    });
-                }
-
-                mainFrame.contentWindow.location.href = getInitialUrl();
-            }
-
-            function initializeLogo() {
-                if($axure.document.configuration.logoImagePath) {
-                    var image = new Image();
-                    image.onload = function() {
-                        $('#logoImage').css('max-width', this.width + 'px');
-                        $axure.player.resizeContent();
-                    };
-                    image.src = $axure.document.configuration.logoImagePath;
-                
-                    $('#interfaceControlFrameLogoImageContainer').html('<img id="logoImage" src="" />');
-                    $('#logoImage').attr('src', $axure.document.configuration.logoImagePath).load(function() { resizeContent(); });
-                } else $('#interfaceControlFrameLogoImageContainer').hide();
-
-                if ($axure.document.configuration.logoImageCaption) {
-                    $('#interfaceControlFrameLogoCaptionContainer').html($axure.document.configuration.logoImageCaption);
-                } else $('#interfaceControlFrameLogoCaptionContainer').hide();
-
-                if(!$('#interfaceControlFrameLogoImageContainer').is(':visible') && !$('#interfaceControlFrameLogoCaptionContainer').is(':visible')) {
-                    $('#interfaceControlFrameLogoContainer').hide();
-                }
-            }
-
-            var resizeContent = $axure.player.resizeContent = function() {
-                var newHeight = $(window).height();
-                var newWidth = $(window).width();
-
-                var controlContainerHeight = newHeight;// - 30;
-                if($('#interfaceControlFrameLogoContainer').is(':visible')) controlContainerHeight -= $('#interfaceControlFrameLogoContainer').outerHeight();// + 16;
-
-                $('#outerContainer').height(newHeight).width(newWidth);
-                $('.vsplitbar').height(newHeight);
-                $('#leftPanel').height(newHeight);
-                $('#interfaceControlFrame').height(newHeight);
-                $('#interfaceControlFrameContainer').height(newHeight);
-                $('#interfaceControlFrameHostContainer').height(controlContainerHeight);
-
-                $('#rightPanel').height(newHeight);
-                $('#mainFrame').height(newHeight);
-
-                if($('#leftPanel').is(':visible')) $('#rightPanel').width($(window).width() - $('#leftPanel').width() - 1);// $('.vsplitbar').width());
-                else $('#rightPanel').width($(window).width());
-
-                $(document).trigger('ContainerHeightChange',[controlContainerHeight]);
-
-                if(MOBILE_DEVICE) {
-                    if(!(getHashStringVar(ADAPTIVE_VIEW_VAR_NAME).length > 0)) $axure.messageCenter.postMessage('setAdaptiveViewForSize', {'width':newWidth, 'height':$('#rightPanel').height()});
-                }
-            }
-
-            var collapseToBar = $axure.player.collapseToBar = function() {
-                lastLeftPanelWidth = $('#leftPanel').width();
-                $('#leftPanel').width('55px');
-                $('.vsplitbar').hide();
-                $('#rightPanel').width($(window).width() - $('#leftPanel').width());
-                $(window).resize();
-                $('#outerContainer').trigger('resize');
-                toolBarOnly = true;
-            }
-
-            var expandFromBar = $axure.player.expandFromBar = function() {
-                if($('.vsplitbar').is(':visible')) return;
-
-                $('#leftPanel').width(lastLeftPanelWidth);
-                $('.vsplitbar').show();
-                $('#rightPanel').width($(window).width() - $('#leftPanel').width() - 1);// $('.vsplitbar').width());
-                $(window).resize();
-                $('#outerContainer').trigger('resize');
-                toolBarOnly = false;
-            }
-
-        })();
-
-        function messageCenter_message(message, data) {
-            if(message == 'expandFrame') expand();
-            else if(message == 'getCollapseFrameOnLoad' && $axure.player.settings.startCollapsed && !MOBILE_DEVICE) $axure.messageCenter.postMessage('collapseFrameOnLoad');
-        }
-
-        
-        function getInitialUrl() {
-            var pageName = getHashStringVar("p");
-            if(pageName.length > 0) return pageName + ".html";
-            else {
-                var url = getFirstPageUrl($axure.document.sitemap.rootNodes);
-                return (url ? url : "about:blank");
-            }
-        }
-
-        function getFirstPageUrl(nodes) {
-            for (var i = 0; i < nodes.length; i++) {
-                var node = nodes[i];
-                if (node.url) return node.url;
-                else {
-                    var hasChildren = (node.children && node.children.length > 0);
-                    if (hasChildren) {
-                        var url = getFirstPageUrl(node.children);
-                        if (url) return url;
-                    }
-                }
-            }
-            return null;
-        }
-
-        function closePlayer() {
-            if($axure.page.location) window.location.href = $axure.page.location;
-            else {
-                var pageFile = getInitialUrl();
-                var currentLocation = window.location.toString();
-                window.location.href = currentLocation.substr(0, currentLocation.lastIndexOf("/") + 1) + pageFile;
-            }
-        }
-
-        function replaceHash(newHash) {
-            var currentLocWithoutHash = window.location.toString().split('#')[0];
-
-            //We use replace so that every hash change doesn't get appended to the history stack.
-            //We use replaceState in browsers that support it, else replace the location
-            if(typeof window.history.replaceState != 'undefined') {
-                try {
-                    //Chrome 45 (Version 45.0.2454.85 m) started throwing an error here when generated locally (this only happens with sitemap open) which broke all interactions.
-                    //try catch breaks the url adjusting nicely when the sitemap is open, but all interactions and forward and back buttons work.
-                    //Uncaught SecurityError: Failed to execute 'replaceState' on 'History': A history state object with URL 'file:///C:/Users/Ian/Documents/Axure/HTML/Untitled/start.html#p=home' cannot be created in a document with origin 'null'.
-                    window.history.replaceState(null, null, currentLocWithoutHash + newHash);
-                } catch(ex) {}
-            } else {
-                window.location.replace(currentLocWithoutHash + newHash);
-            }
-        }
-
-        function collapse() {
-            setVarInCurrentUrlHash('c', 1);
-            if(!toolBarOnly) lastLeftPanelWidth = $('#leftPanel').width();
-
-            $('#maximizePanelContainer').show();
-            $('#leftPanel').hide();
-            $('.vsplitbar').hide();
-            $('#rightPanel').width($(window).width());
-            $(window).resize();
-            $('#outerContainer').trigger('resize');
-
-            $(document).trigger('sidebarCollapse');
-
-            if(MOBILE_DEVICE) {
-                $('#maximizePanelContainer').animate({
-                    top:$('#rightPanel').height() - $('#maximizePanelContainer').height()
-                }, 300, 'swing', function() {
-                    $('#maximizePanelContainer').css('top', 'inherit').css('bottom', '0px');
-                });
-            }
-        }
-
-        function expand() {
-            if(MOBILE_DEVICE) {
-                $('#maximizePanelContainer').css('top', '0px').css('bottom', 'inherit');
-            }
-
-            deleteVarFromCurrentUrlHash('c');
-            $('#maximizePanelContainer').hide();
-            $('#leftPanel').width(lastLeftPanelWidth);
-            $('#leftPanel').show();
-            if(!toolBarOnly) {
-                $('.vsplitbar').show();
-                $('#rightPanel').width($(window).width() - $('#leftPanel').width() - 1);
-            } else {
-                $axure.player.collapseToBar();
-            }
-            $(window).resize();
-            $('#outerContainer').trigger('resize');
-
-            $(document).trigger('sidebarExpanded');
-        }
-
-
-        function mainFrame_onload() {
-            if($axure.page.pageName) document.title = $axure.page.pageName;
-        }
-
-        function getQueryString(query) {
-            var qstring = self.location.href.split("?");
-            if(qstring.length < 2) return "";
-            return GetParameter(qstring, query);
-        }
-        
-        function GetParameter(qstring, query) {
-            var prms = qstring[1].split("&");
-            var frmelements = new Array();
-            var currprmeter, querystr = "";
-
-            for(var i = 0; i < prms.length; i++) {
-                currprmeter = prms[i].split("=");
-                frmelements[i] = new Array();
-                frmelements[i][0] = currprmeter[0];
-                frmelements[i][1] = currprmeter[1];
-            }
-
-            for(j = 0; j < frmelements.length; j++) {
-                if(frmelements[j][0].toLowerCase() == query.toLowerCase()) {
-                    querystr = frmelements[j][1];
-                    break;
-                }
-            }
-            return querystr;
-        }
-        
-        function getHashStringVar(query) {
-            var qstring = self.location.href.split("#");
-            if(qstring.length < 2) return "";
-            return GetParameter(qstring, query);
-        }
-
-        function setHashStringVar(currentHash, varName, varVal) {
-            var varWithEqual = varName + '=';
-            var poundVarWithEqual = varVal === '' ? '' :  '#' + varName + '=' + varVal;
-            var ampVarWithEqual = varVal === '' ? '' :  '&' + varName + '=' + varVal;
-            var hashToSet = '';
-
-            var pageIndex = currentHash.indexOf('#' + varWithEqual);
-            if(pageIndex == -1) pageIndex = currentHash.indexOf('&' + varWithEqual);
-            if(pageIndex != -1) {
-                var newHash = currentHash.substring(0, pageIndex);
-
-                newHash = newHash == '' ? poundVarWithEqual : newHash + ampVarWithEqual;
-
-                var ampIndex = currentHash.indexOf('&', pageIndex + 1);
-                if(ampIndex != -1) {
-                    newHash = newHash == '' ? '#' + currentHash.substring(ampIndex + 1) : newHash + currentHash.substring(ampIndex);
-                }
-                hashToSet = newHash;
-            } else if(currentHash.indexOf('#') != -1) {
-                hashToSet = currentHash + ampVarWithEqual;
-            } else {
-                hashToSet = poundVarWithEqual;
-            }
-
-            if(hashToSet != '' || varVal == '') {
-                return hashToSet;
-            }
-
-            return null;
-        }
-
-        function setVarInCurrentUrlHash(varName, varVal) {
-            var newHash = setHashStringVar(window.location.hash, varName, varVal);
-
-            if(newHash != null) {
-                replaceHash(newHash);
-            }
-        }
-
-        function deleteHashStringVar(currentHash, varName) {
-            var varWithEqual = varName + '=';
-
-            var pageIndex = currentHash.indexOf('#' + varWithEqual);
-            if(pageIndex == -1) pageIndex = currentHash.indexOf('&' + varWithEqual);
-            if(pageIndex != -1) {
-                var newHash = currentHash.substring(0, pageIndex);
-
-                var ampIndex = currentHash.indexOf('&', pageIndex + 1);
-
-                //IF begin of string....if none blank, ELSE # instead of & and rest
-                //IF in string....prefix + if none blank, ELSE &-rest
-                if(newHash == '') { //beginning of string
-                    newHash = ampIndex != -1 ? '#' + currentHash.substring(ampIndex + 1) : '';
-                } else { //somewhere in the middle
-                    newHash = newHash + (ampIndex != -1 ? currentHash.substring(ampIndex) : '');
-                }
-
-                return newHash;
-            }
-
-            return null;
-        }
-
-        function deleteVarFromCurrentUrlHash(varName) {
-            var newHash = deleteHashStringVar(window.location.hash, varName);
-
-            if(newHash != null) {
-                replaceHash(newHash);
-            }
-        }
-    --></script>
-    
-    <link type="text/css" rel="Stylesheet" href="plugins/sitemap/styles/sitemap.css" />
-    <link type="text/css" rel="Stylesheet" href="plugins/page_notes/styles/page_notes.css" />
-    <link type="text/css" rel="Stylesheet" href="plugins/debug/styles/debug.css" />
-    <script src="resources/scripts/startPost.js"></script>
-
-
-    <!--<link type="text/css" rel="Stylesheet" href="plugins/recordplay/styles/recordplay.css" />
-    <script type="text/javascript" src="plugins/recordplay/recordplay.js"></script>-->
-    
+    <meta charset="utf-8">  
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
+    <meta name="viewport" content="width=device-width, initial-scale=1">  
+    <title>教育培训网</title>  
+    <meta name="description" content=""> 
+    <!-- Bootstrap -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="assets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Linearicons -->
+    <link href="assets/vendors/linearicons/css/linearicons.css" rel="stylesheet">
+
+    <!-- Owl Carousel -->
+    <link href="assets/vendors/owl-carousel/owl.carousel.min.css" rel="stylesheet">
+    <link href="assets/vendors/owl-carousel/owl.theme.min.css" rel="stylesheet">
+
+    <!-- Flex Slider -->
+    <link href="assets/vendors/flexslider/flexslider.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="assets/css/base.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="#">
 
 </head>
-<body scroll="no" class="hashover">
-    <div id="outerContainer">
+<body id="body" class="wide-layout"> 
+    <div id="header-w1200-h">           
+        <div class="header">             
+                <div class="header-wrap  m0">
+                    <div class="logo fl">
+                       <a href="http://e.ethrss.cn/Main/Projects?type=1" title="教育培训网">
+                          <img src="http://jn.ethrss.cn/statics/jiaopei/images/logo_003.jpg" width="822" height="97" border="0" alt="教育培训网" title="教育培训网">
+                     </a>
+                    </div> 
+                </div>
+        </div>
+        <div class="nav clearfix">
+            <div class="grid_wrap">
+                <ul>
+                    <li class="item"><a href="http://edu.mohrss.gov.cn/">首页</a></li>
+                    <li class="item"><a href="http://edu.mohrss.gov.cn/jgjs1/jgjj.htm">机构介绍</a></li>
+                    <li class="item"><a href="http://www.mohrss.gov.cn/SYrlzyhshbzb/zcfg/flfg/">政策法规</a></li>
+                    <li class="item"><a href="http://edu.mohrss.gov.cn/xtpx.htm">系统培训</a></li>
+                    <li class="item"><a href="http://edu.mohrss.gov.cn/qypx.htm">企业培训</a></li>
+                    <li class="item"><a href="http://edu.mohrss.gov.cn/jnpx.htm">技能培训</a></li>
+                    <li class="item current"><a href="http://jn.ethrss.cn/">网络培训</a></li>
+                    <li class="item"><a href="http://edu.mohrss.gov.cn/pxjd1/jjpxjd.htm">培训基地</a></li>
+                    <li class="item"><a href="http://edu.mohrss.gov.cn/dwjl.htm">对外交流</a></li>
+                    <li class="item last-item"><a href="http://edu.mohrss.gov.cn/jxjy.htm">教学教研</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+     <!-- Heard  -->
+   
+    <div id="pageWrapper" class="page-wrapper">
+        <!-- –––––––––––––––[ HEADER ]––––––––––––––– -->
+        <header id="mainHeader" class="main-header">          
+            <!-- Header Menu -->
+            <div class="header-menu bg-blue hidden-lg">
+                <div class="container">
+                    <nav class="nav-bar">
+                        <div class="nav-header">
+                            <span class="nav-toggle" data-toggle="#header-navbar">
+		                        <i></i>
+		                        <i></i>
+		                        <i></i>
+		                    </span>
+                        </div>
+                        <div id="header-navbar" class="nav-collapse">
+                            <ul class="nav-menu">
+                                <li class="active">
+                                    <a href="index.html">Home</a>
+                                </li>
+                                <li class="dropdown-mega-menu">
+                                    <a href="deals_grid.html">Deals</a>                                    
+                                </li>                                
+                            </ul>
+                        </div>
+                        <div class="nav-menu nav-menu-fixed">
+                            <a href="#">Get Quote</a>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <!-- End Header Menu -->
 
-        <div id="leftPanel">
-            <div id="interfaceControlFrame">
-                <div id="interfaceControlFrameMinimizeContainer">
-                    <a title="Collapse" id="interfaceControlFrameMinimizeButton" onclick="collapse();">&nbsp;</a>
-                </div>
-                <div id="interfaceControlFrameHeaderContainer">
-                    <ul id="interfaceControlFrameHeader"></ul>
-                </div>
-                <div id="interfaceControlFrameContainer">
-                    <div id="interfaceControlFrameLogoContainer">
-                        <div id="interfaceControlFrameLogoImageContainer"></div>
-                        <div id="interfaceControlFrameLogoCaptionContainer"></div>
+        </header>
+        <!-- –––––––––––––––[ HEADER ]––––––––––––––– -->
+
+        <!-- –––––––––––––––[ PAGE CONTENT ]––––––––––––––– -->
+        <main id="mainContent" class="main-content">
+            <div class="page-container ptb-10">
+                <div class="container">
+                    <div class="section deals-header-area ptb-30">
+                        <div class="row row-tb-20">                           
+                            <div class="col-xs-12 col-md-8 col-lg-9">
+                                <div class="header-deals-slider owl-slider" data-loop="true" data-dots="true" data-autoplay="true" data-autoplay-timeout="1000" data-smart-speed="1000" data-nav-speed="false" data-nav="true" data-xxs-items="1" data-xxs-nav="true" data-xs-items="1" data-xs-nav="true" data-sm-items="1" data-sm-nav="true" data-md-items="1" data-md-nav="true" data-lg-items="1" data-lg-nav="true">
+                                    <div class="deal-single panel item">
+                                        <figure class="deal-thumbnail embed-responsive embed-responsive-16by9" data-bg-img="assets/images/deals/deal_01.jpg">                                                                                 
+                                            <div class="deal-about p-20 pos-a bottom-0 left-0">                                              
+                                                <h3 class="deal-title mb-10 ">
+                                                    <a href="deal_single.html" class="color-light color-h-lighter">The Crash Bad Instant Folding Twin Bed</a>
+                                                </h3>
+                                            </div>
+                                        </figure>
+                                    </div>                                    
+                                    <div class="deal-single panel item">
+                                        <figure class="deal-thumbnail embed-responsive embed-responsive-16by9" data-bg-img="assets/images/deals/deal_03.jpg">
+                                            <div class="deal-about p-20 pos-a bottom-0 left-0">                                                
+                                                <h3 class="deal-title mb-10 ">
+                                                    <a href="deal_single.html" class="color-light color-h-lighter">Hampton Bay LED Light Ceiling Exhaust Fan</a>
+                                                </h3>
+                                            </div>
+                                        </figure>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-4 col-lg-3">
+                                <aside>
+                                    <ul class="nav-coupon-category panel">
+                                        <li><a href="#"><i class="fa fa-cutlery"></i>Food &amp; Drink<span>40</span></a>
+                                        </li>
+                                        <li><a href="#"><i class="fa fa-calendar"></i>Events<span>42</span></a>
+                                        </li>
+                                        <li><a href="#"><i class="fa fa-female"></i>Beauty<span>48</span></a>
+                                        </li>
+                                        <li><a href="#"><i class="fa fa-bolt"></i>Fitness<span>33</span></a>
+                                        </li>                                       
+                               
+                                    </ul>
+                                </aside>
+                            </div>
+                        </div>
                     </div>
-                    <div id="interfaceControlFrameHostContainer">
-                    </div>
+                    
+
+                    <section class="section latest-deals-area ptb-30">
+                        <header class="panel ptb-15 prl-20 pos-r mb-30">
+                            <h3 class="section-title font-18">Latest Deals</h3>
+                            <a class="btn btn-o btn-xs pos-a right-10 pos-tb-center">View All</a>
+                        </header>
+
+
+                        <div class="row row-masnory row-tb-20">
+
+                            <div class="col-sm-6  col-lg-5ths">
+                                <div class="deal-single panel">
+                                    <figure class="deal-thumbnail embed-responsive embed-responsive-16by9" data-bg-img="assets/images/deals/deal_01.jpg"></figure>
+                                    <div class="bg-white pt-20 pl-20 pr-15">
+                                        <div class="pr-md-10">
+                                            <div class="rating mb-10">
+                                                <span class="rating-stars rate-allow" data-rating="5">
+                                                    <i class="fa fa-star-o"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                </span>
+                                                <span class="rating-reviews">
+                                                    ( <span class="rating-count">241</span> rates )
+                                                </span>
+                                            </div>
+                                            <h3 class="deal-title mb-10">
+                                                <a href="deal_single.html">零壹标题</a>
+                                            </h3>
+                                            <ul class="deal-meta list-inline mb-10 color-mid">
+                                                <li><i class="ico fa fa-map-marker mr-10"></i>United State</li>
+                                                <li><i class="ico fa fa-shopping-basket mr-10"></i>120 Bought</li>
+                                            </ul>
+                                            <p class="text-muted mb-20">文字描述</p>
+                                        </div>                                       
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-5ths">
+                                    <div class="deal-single panel">
+                                        <figure class="deal-thumbnail embed-responsive embed-responsive-16by9" data-bg-img="assets/images/deals/deal_01.jpg"></figure>
+                                        <div class="bg-white pt-20 pl-20 pr-15">
+                                            <div class="pr-md-10">
+                                                <div class="rating mb-10">
+                                                    <span class="rating-stars rate-allow" data-rating="5">
+                                                        <i class="fa fa-star-o"></i>
+                                                        <i class="fa fa-star-o"></i>
+                                                        <i class="fa fa-star-o"></i>
+                                                        <i class="fa fa-star-o"></i>
+                                                        <i class="fa fa-star-o"></i>
+                                                    </span>
+                                                    <span class="rating-reviews">
+                                                        ( <span class="rating-count">241</span> rates )
+                                                    </span>
+                                                </div>
+                                                <h3 class="deal-title mb-10">
+                                                    <a href="deal_single.html">零壹标题</a>
+                                                </h3>
+                                                <ul class="deal-meta list-inline mb-10 color-mid">
+                                                    <li><i class="ico fa fa-map-marker mr-10"></i>United State</li>
+                                                    <li><i class="ico fa fa-shopping-basket mr-10"></i>120 Bought</li>
+                                                </ul>
+                                                <p class="text-muted mb-20">文字描述</p>
+                                            </div>                                       
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-lg-5ths">
+                                        <div class="deal-single panel">
+                                            <figure class="deal-thumbnail embed-responsive embed-responsive-16by9" data-bg-img="assets/images/deals/deal_01.jpg"></figure>
+                                            <div class="bg-white pt-20 pl-20 pr-15">
+                                                <div class="pr-md-10">
+                                                    <div class="rating mb-10">
+                                                        <span class="rating-stars rate-allow" data-rating="5">
+                                                            <i class="fa fa-star-o"></i>
+                                                            <i class="fa fa-star-o"></i>
+                                                            <i class="fa fa-star-o"></i>
+                                                            <i class="fa fa-star-o"></i>
+                                                            <i class="fa fa-star-o"></i>
+                                                        </span>
+                                                        <span class="rating-reviews">
+                                                            ( <span class="rating-count">241</span> rates )
+                                                        </span>
+                                                    </div>
+                                                    <h3 class="deal-title mb-10">
+                                                        <a href="deal_single.html">零壹标题</a>
+                                                    </h3>
+                                                    <ul class="deal-meta list-inline mb-10 color-mid">
+                                                        <li><i class="ico fa fa-map-marker mr-10"></i>United State</li>
+                                                        <li><i class="ico fa fa-shopping-basket mr-10"></i>120 Bought</li>
+                                                    </ul>
+                                                    <p class="text-muted mb-20">文字描述</p>
+                                                </div>                                       
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-lg-5ths">
+                                            <div class="deal-single panel">
+                                                <figure class="deal-thumbnail embed-responsive embed-responsive-16by9" data-bg-img="assets/images/deals/deal_01.jpg"></figure>
+                                                <div class="bg-white pt-20 pl-20 pr-15">
+                                                    <div class="pr-md-10">
+                                                        <div class="rating mb-10">
+                                                            <span class="rating-stars rate-allow" data-rating="5">
+                                                                <i class="fa fa-star-o"></i>
+                                                                <i class="fa fa-star-o"></i>
+                                                                <i class="fa fa-star-o"></i>
+                                                                <i class="fa fa-star-o"></i>
+                                                                <i class="fa fa-star-o"></i>
+                                                            </span>
+                                                            <span class="rating-reviews">
+                                                                ( <span class="rating-count">241</span> rates )
+                                                            </span>
+                                                        </div>
+                                                        <h3 class="deal-title mb-10">
+                                                            <a href="deal_single.html">零壹标题</a>
+                                                        </h3>
+                                                        <ul class="deal-meta list-inline mb-10 color-mid">
+                                                            <li><i class="ico fa fa-map-marker mr-10"></i>United State</li>
+                                                            <li><i class="ico fa fa-shopping-basket mr-10"></i>120 Bought</li>
+                                                        </ul>
+                                                        <p class="text-muted mb-20">文字描述</p>
+                                                    </div>                                       
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-lg-5ths">
+                                                <div class="deal-single panel">
+                                                    <figure class="deal-thumbnail embed-responsive embed-responsive-16by9" data-bg-img="assets/images/deals/deal_01.jpg"></figure>
+                                                    <div class="bg-white pt-20 pl-20 pr-15">
+                                                        <div class="pr-md-10">
+                                                            <div class="rating mb-10">
+                                                                <span class="rating-stars rate-allow" data-rating="5">
+                                                                    <i class="fa fa-star-o"></i>
+                                                                    <i class="fa fa-star-o"></i>
+                                                                    <i class="fa fa-star-o"></i>
+                                                                    <i class="fa fa-star-o"></i>
+                                                                    <i class="fa fa-star-o"></i>
+                                                                </span>
+                                                                <span class="rating-reviews">
+                                                                    ( <span class="rating-count">241</span> rates )
+                                                                </span>
+                                                            </div>
+                                                            <h3 class="deal-title mb-10">
+                                                                <a href="deal_single.html">零壹标题</a>
+                                                            </h3>
+                                                            <ul class="deal-meta list-inline mb-10 color-mid">
+                                                                <li><i class="ico fa fa-map-marker mr-10"></i>United State</li>
+                                                                <li><i class="ico fa fa-shopping-basket mr-10"></i>120 Bought</li>
+                                                            </ul>
+                                                            <p class="text-muted mb-20">文字描述</p>
+                                                        </div>                                       
+                                                    </div>
+                                                </div>
+                                            </div>
+                                       
+
+
+
+                        </div>  
+                    </section>
+
+
+                    <section class="section latest-coupons-area ptb-30">
+                        <header class="panel ptb-15 prl-20 pos-r mb-30">
+                            <h3 class="section-title font-18">Latest Deals</h3>
+                            <a class="btn btn-o btn-xs pos-a right-10 pos-tb-center">View All</a>
+                        </header>
+
+                        <div class="latest-coupons-slider owl-slider" data-autoplay-hover-pause="true" data-loop="true" data-autoplay="true" data-smart-speed="1000" data-autoplay-timeout="10000" data-margin="30" data-nav-speed="false" data-items="1" data-xxs-items="1" data-xs-items="2" data-sm-items="2" data-md-items="3" data-lg-items="4">
+                            <div class="coupon-item">
+                                <div class="coupon-single panel t-center">
+                                    <div class="ribbon-wrapper is-hidden-xs-down">
+                                        <div class="ribbon">Featured</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <div class="text-center p-20">
+                                                <img class="store-logo" src="assets/images/coupons/coupon_01.jpg" alt="">
+                                            </div>
+                                            <!-- end media -->
+                                        </div>
+                                        <!-- end col -->
+
+                                        <div class="col-xs-12">
+                                            <div class="panel-body">
+                                                <ul class="deal-meta list-inline mb-10">
+                                                    <li class="color-green"><i class="ico lnr lnr-smile mr-5"></i>Verifed</li>
+                                                    <li class="color-muted"><i class="ico lnr lnr-users mr-5"></i>125 Used</li>
+                                                </ul>
+                                                <h4 class="color-green mb-10 t-uppercase">10% OFF</h4>
+                                                <h5 class="deal-title mb-10">
+                                <a href="#">10% off select XPS & Alienware laptops</a>
+                            </h5>
+                                                <p class="mb-15 color-muted mb-20 font-12"><i class="lnr lnr-clock mr-10"></i>Expires On 01/01/2018</p>
+                                                <div class="showcode" data-toggle-class="coupon-showen" data-toggle-event="click">
+                                                    <button class="show-code btn btn-sm btn-block" data-toggle="modal" data-target="#coupon_01">Get Coupon Code</button>
+                                                    <div class="coupon-hide">X455-17GT-OL58</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end col -->
+                                    </div>
+                                    <!-- end row -->
+                                </div>
+                            </div>
+                            <div class="coupon-item">
+                                <div class="coupon-single panel t-center">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <div class="text-center p-20">
+                                                <img class="store-logo" src="assets/images/coupons/coupon_02.jpg" alt="">
+                                            </div>
+                                            <!-- end media -->
+                                        </div>
+                                        <!-- end col -->
+
+                                        <div class="col-xs-12">
+                                            <div class="panel-body">
+                                                <ul class="deal-meta list-inline mb-10">
+                                                    <li class="color-muted"><i class="ico fa fa-map-marker mr-5"></i>California</li>
+                                                    <li class="color-muted"><i class="ico lnr lnr-users mr-5"></i>13 Used</li>
+                                                </ul>
+                                                <h4 class="color-green mb-10 t-uppercase">15% OFF</h4>
+                                                <h5 class="deal-title mb-10">
+                                <a href="#">15% off 2 select Amazon Fire cases</a>
+                            </h5>
+                                                <p class="mb-15 color-muted mb-20 font-12"><i class="lnr lnr-clock mr-10"></i>Expires On 05/02/2018</p>
+                                                <div class="showcode" data-toggle-class="coupon-showen" data-toggle-event="click">
+                                                    <button class="show-code btn btn-sm btn-block" data-toggle="modal" data-target="#coupon_02">Show Code</button>
+                                                    <div class="coupon-hide">X455-17GT-OL58</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end col -->
+                                    </div>
+                                    <!-- end row -->
+                                </div>
+                            </div>
+                            <div class="coupon-item">
+                                <div class="coupon-single panel t-center">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <div class="text-center p-20">
+                                                <img class="store-logo" src="assets/images/coupons/coupon_03.jpg" alt="">
+                                            </div>
+                                            <!-- end media -->
+                                        </div>
+                                        <!-- end col -->
+
+                                        <div class="col-xs-12">
+                                            <div class="panel-body">
+                                                <ul class="deal-meta list-inline mb-10">
+                                                    <li class="color-muted"><i class="ico fa fa-tag mr-5"></i>Coupon</li>
+                                                    <li class="color-muted"><i class="ico lnr lnr-users mr-5"></i>425 Used</li>
+                                                </ul>
+                                                <h4 class="color-green mb-10 t-uppercase">20% OFF</h4>
+                                                <h5 class="deal-title mb-10">
+                                <a href="#">Flat 40% off hotel bookings in 10 cities</a>
+                            </h5>
+                                                <p class="mb-15 color-muted mb-20 font-12"><i class="lnr lnr-clock mr-10"></i>Expires On 15/01/2018</p>
+                                                <div class="showcode" data-toggle-class="coupon-showen" data-toggle-event="click">
+                                                    <button class="show-code btn btn-sm btn-block" data-toggle="modal" data-target="#coupon_03">See Sale</button>
+                                                    <div class="coupon-hide">X455-17GT-OL58</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end col -->
+                                    </div>
+                                    <!-- end row -->
+                                </div>
+                            </div>
+                            <div class="coupon-item">
+                                <div class="coupon-single panel t-center">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <div class="text-center p-20">
+                                                <img class="store-logo" src="assets/images/coupons/coupon_04.jpg" alt="">
+                                            </div>
+                                            <!-- end media -->
+                                        </div>
+                                        <!-- end col -->
+
+                                        <div class="col-xs-12">
+                                            <div class="panel-body">
+                                                <ul class="deal-meta list-inline mb-10">
+                                                    <li class="color-green"><i class="ico lnr lnr-smile mr-5"></i>Verifed</li>
+                                                    <li class="color-muted"><i class="ico lnr lnr-users mr-5"></i>230 Used</li>
+                                                </ul>
+                                                <h4 class="color-green mb-10 t-uppercase">30% OFF</h4>
+                                                <h5 class="deal-title mb-10">
+                                <a href="#">There is no place like home 25% off</a>
+                            </h5>
+                                                <p class="mb-15 color-muted mb-20 font-12"><i class="lnr lnr-clock mr-10"></i>Expires On 02/03/2018</p>
+                                                <div class="showcode" data-toggle-class="coupon-showen" data-toggle-event="click">
+                                                    <button class="show-code btn btn-sm btn-block" data-toggle="modal" data-target="#coupon_04">Print Code</button>
+                                                    <div class="coupon-hide">X455-17GT-OL58</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end col -->
+                                    </div>
+                                    <!-- end row -->
+                                </div>
+                            </div>
+                            <div class="coupon-item">
+                                <div class="coupon-single panel t-center">
+                                    <div class="ribbon-wrapper is-hidden-xs-down">
+                                        <div class="ribbon">Featured</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <div class="text-center p-20">
+                                                <img class="store-logo" src="assets/images/coupons/coupon_05.jpg" alt="">
+                                            </div>
+                                            <!-- end media -->
+                                        </div>
+                                        <!-- end col -->
+
+                                        <div class="col-xs-12">
+                                            <div class="panel-body">
+                                                <ul class="deal-meta list-inline mb-10">
+                                                    <li class="color-muted"><i class="ico fa fa-tag mr-5"></i>Coupon</li>
+                                                    <li class="color-muted"><i class="ico lnr lnr-users mr-5"></i>86 Used</li>
+                                                </ul>
+                                                <h4 class="color-green mb-10 t-uppercase">10% OFF</h4>
+                                                <h5 class="deal-title mb-10">
+                                <a href="#">10% off $399+ refurbished laptops</a>
+                            </h5>
+                                                <p class="mb-15 color-muted mb-20 font-12"><i class="lnr lnr-clock mr-10"></i>Expires On 20/02/2018</p>
+                                                <div class="showcode" data-toggle-class="coupon-showen" data-toggle-event="click">
+                                                    <button class="show-code btn btn-sm btn-block" data-toggle="modal" data-target="#coupon_05">Show Code</button>
+                                                    <div class="coupon-hide">X455-17GT-OL58</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end col -->
+                                    </div>
+                                    <!-- end row -->
+                                </div>
+                            </div>
+                            <div class="coupon-item">
+                                <div class="coupon-single panel t-center">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <div class="text-center p-20">
+                                                <img class="store-logo" src="assets/images/coupons/coupon_06.jpg" alt="">
+                                            </div>
+                                            <!-- end media -->
+                                        </div>
+                                        <!-- end col -->
+
+                                        <div class="col-xs-12">
+                                            <div class="panel-body">
+                                                <ul class="deal-meta list-inline mb-10">
+                                                    <li class="color-green"><i class="ico lnr lnr-smile mr-5"></i>Verifed</li>
+                                                    <li class="color-muted"><i class="ico lnr lnr-users mr-5"></i>24 Used</li>
+                                                </ul>
+                                                <h4 class="color-green mb-10 t-uppercase">25% OFF</h4>
+                                                <h5 class="deal-title mb-10">
+                                <a href="#">There is no place like home 25% off</a>
+                            </h5>
+                                                <p class="mb-15 color-muted mb-20 font-12"><i class="lnr lnr-clock mr-10"></i>Expires On 14/01/2018</p>
+                                                <div class="showcode" data-toggle-class="coupon-showen" data-toggle-event="click">
+                                                    <button class="show-code btn btn-sm btn-block" data-toggle="modal" data-target="#coupon_06">Show Coupon</button>
+                                                    <div class="coupon-hide">X455-17GT-OL58</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end col -->
+                                    </div>
+                                    <!-- end row -->
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="section stores-area stores-area-v1 ptb-30">
+                        <header class="panel ptb-15 prl-20 pos-r mb-30">
+                            <h3 class="section-title font-18">Popular Stores</h3>
+                            <a href="stores_01.html" class="btn btn-o btn-xs pos-a right-10 pos-tb-center">All Stores</a>
+                        </header>
+                        <div class="popular-stores-slider owl-slider" data-loop="true" data-autoplay="true" data-smart-speed="1000" data-autoplay-timeout="10000" data-margin="20" data-items="2" data-xxs-items="2" data-xs-items="2" data-sm-items="3" data-md-items="5" data-lg-items="6">
+                            <div class="store-item t-center">
+                                <a href="store_single_01.html" class="panel is-block">
+                                    <div class="embed-responsive embed-responsive-4by3">
+                                        <div class="store-logo">
+                                            <img src="assets/images/brands/brand_01.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <h6 class="store-name ptb-10">Amazon</h6>
+                                </a>
+                            </div>
+                            <div class="store-item t-center">
+                                <a href="store_single_01.html" class="panel is-block">
+                                    <div class="embed-responsive embed-responsive-4by3">
+                                        <div class="store-logo">
+                                            <img src="assets/images/brands/brand_02.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <h6 class="store-name ptb-10">Ashford</h6>
+                                </a>
+                            </div>
+                            <div class="store-item t-center">
+                                <a href="store_single_01.html" class="panel is-block">
+                                    <div class="embed-responsive embed-responsive-4by3">
+                                        <div class="store-logo">
+                                            <img src="assets/images/brands/brand_03.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <h6 class="store-name ptb-10">DELL</h6>
+                                </a>
+                            </div>
+                            <div class="store-item t-center">
+                                <a href="store_single_01.html" class="panel is-block">
+                                    <div class="embed-responsive embed-responsive-4by3">
+                                        <div class="store-logo">
+                                            <img src="assets/images/brands/brand_04.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <h6 class="store-name ptb-10">Card Cash</h6>
+                                </a>
+                            </div>
+                            <div class="store-item t-center">
+                                <a href="store_single_01.html" class="panel is-block">
+                                    <div class="embed-responsive embed-responsive-4by3">
+                                        <div class="store-logo">
+                                            <img src="assets/images/brands/brand_05.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <h6 class="store-name ptb-10">Finish Line</h6>
+                                </a>
+                            </div>
+                            <div class="store-item t-center">
+                                <a href="store_single_01.html" class="panel is-block">
+                                    <div class="embed-responsive embed-responsive-4by3">
+                                        <div class="store-logo">
+                                            <img src="assets/images/brands/brand_06.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <h6 class="store-name ptb-10">JC Penny</h6>
+                                </a>
+                            </div>
+                            <div class="store-item t-center">
+                                <a href="store_single_01.html" class="panel is-block">
+                                    <div class="embed-responsive embed-responsive-4by3">
+                                        <div class="store-logo">
+                                            <img src="assets/images/brands/brand_07.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <h6 class="store-name ptb-10">Callaway Golf</h6>
+                                </a>
+                            </div>
+                            <div class="store-item t-center">
+                                <a href="store_single_01.html" class="panel is-block">
+                                    <div class="embed-responsive embed-responsive-4by3">
+                                        <div class="store-logo">
+                                            <img src="assets/images/brands/brand_08.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <h6 class="store-name ptb-10">Car Toys</h6>
+                                </a>
+                            </div>
+                        </div>
+                    </section>
+
+
+                    <section class="section latest-news-area blog-area blog-grid blog-3-col ptb-30">
+                        <header class="panel ptb-15 prl-20 pos-r mb-30">
+                            <h3 class="section-title font-18">Latest News</h3>
+                            <a href="blog_classic_right_sidebar.html" class="btn btn-o btn-xs pos-a right-10 pos-tb-center">Visit Blog</a>
+                        </header>
+
+                        <div class="row row-tb-20">
+
+                            <!-- Blog Post -->
+                            <div class="blog-post col-xs-12 col-sm-6 col-md-4">
+                                <article class="entry panel">
+                                    <figure class="entry-media post-thumbnail embed-responsive embed-responsive-16by9" data-bg-img="assets/images/blog/post_01.jpg">
+                                        <div class="entry-date">
+                                            <h4>13</h4>
+                                            <h6>JUN</h6>
+                                        </div>
+                                    </figure>
+                                    <div class="entry-wrapper pt-20 pb-10 prl-20">
+                                        <header class="entry-header">
+                                            <h4 class="entry-title mb-10 mb-md-15 font-xs-16 font-sm-18 font-md-16 font-lg-16">
+							<a href="blog_single_standard.html">Restaurant Employer Read Clients Orders On His iPad</a>
+						</h4>
+                                            <div class="entry-meta mb-10">
+                                                <ul class="tag-info list-inline">
+                                                    <li><i class="icon fa fa-user"></i> By : John Doe</li>
+                                                    <li><i class="icon fa fa-comments"></i>14 Comments </li>
+                                                </ul>
+                                            </div>
+                                        </header>
+                                        <div class="entry-content">
+                                            <p class="entry-summary">Vivamus sem massa, cursus at mollis eu, euismod id risus. Vestibulum nunc ante, sagittis ut nisl at, porta porttitor justo. Nam imperdiet im...</p>
+                                        </div>
+                                        <footer class="entry-footer text-right">
+                                            <a href="blog_single_standard.html" class="more-link btn btn-link">Continue reading <i class="icon fa fa-long-arrow-right"></i></a>
+                                        </footer>
+                                    </div>
+                                </article>
+                            </div>
+                            <!-- End Blog Post -->
+
+                            <!-- Blog Post -->
+                            <div class="blog-post col-xs-12 col-sm-6 col-md-4">
+                                <article class="entry panel">                                   
+                                    <div class="entry-wrapper pt-20 pb-10 prl-20">
+                                        <header class="entry-header">
+                                            <h4 class="entry-title mb-10 mb-md-15 font-xs-16 font-sm-18 font-md-16 font-lg-16">
+                    							<a href="blog_single_vimeo.html">Amazing Classic Interior Design With Perfect Lighting</a>
+                    						</h4>
+                                            <div class="entry-meta mb-10">
+                                                <ul class="tag-info list-inline">
+                                                    <li><i class="icon fa fa-user"></i> By : John Doe</li>
+                                                    <li><i class="icon fa fa-comments"></i> 14 Comments </li>
+                                                </ul>
+                                            </div>
+                                        </header>
+                                        <div class="entry-content">
+                                            <p class="entry-summary">Vivamus sem massa, cursus at mollis eu, euismod id risus. Vestibulum nunc ante, sagittis ut nisl at, porta porttitor justo. Nam imperdiet im...</p>
+                                        </div>
+                                        <footer class="entry-footer text-right">
+                                            <a href="blog_single_vimeo.html" class="more-link btn btn-link">Continue reading <i class="icon fa fa-long-arrow-right"></i></a>
+                                        </footer>
+                                    </div>
+                                </article>
+                            </div>
+                            <!-- End Blog Post -->
+
+                            <!-- Blog Post -->
+                            <div class="blog-post col-xs-12 col-sm-6 col-md-4">
+                                <article class="entry panel">
+                                   
+                                    <div class="entry-wrapper pt-20 pb-10 prl-20">
+                                        <header class="entry-header">
+                                            <h4 class="entry-title mb-10 mb-md-15 font-xs-16 font-sm-18 font-md-16 font-lg-16">
+							<a href="blog_single_youtube.html">English Breakfast Tea With Tasty Donut Desserts</a>
+						</h4>
+                                            <div class="entry-meta mb-10">
+                                                <ul class="tag-info list-inline">
+                                                    <li><i class="icon fa fa-user"></i> By : John Doe</li>
+                                                    <li><i class="icon fa fa-comments"></i> 14 Comments </li>
+                                                </ul>
+                                            </div>
+                                        </header>
+                                        <div class="entry-content">
+                                            <p class="entry-summary">Vivamus sem massa, cursus at mollis eu, euismod id risus. Vestibulum nunc ante, sagittis ut nisl at, porta porttitor justo. Nam imperdiet im...</p>
+                                        </div>
+                                        <footer class="entry-footer text-right">
+                                            <a href="blog_single_youtube.html" class="more-link btn btn-link">Continue reading <i class="icon fa fa-long-arrow-right"></i></a>
+                                        </footer>
+                                    </div>
+                                </article>
+                            </div>
+                            <!-- End Blog Post -->
+
+                        </div>
+                    </section>
                 </div>
-                <div id="interfaceControlFrameCloseContainer">
-                    <a title="Close" id="interfaceControlFrameCloseButton" onclick="closePlayer();">CLOSEfdfddfdf33333333334444444ds</a>
+            </div>
+
+
+        </main>
+        <!-- –––––––––––––––[ END PAGE CONTENT ]––––––––––––––– -->
+      
+        <!-- –––––––––––––––[ FOOTER ]––––––––––––––– -->
+        <div class="footer" id="footer">
+            <div class="grid_wrap clearfix">
+                <div class="pull_left" style="width:480px;">
+                        <p>
+                            Copyright2017. All right reserved edu.mohrss.gov.cn
+                        </p>
+                        <p>
+                            主办单位：人力资源和社会保障部人事司、人力资源和社会保障部教育培训中心
+                        </p>
+                        <p>
+                            版权所有：中华人民共和国人力资源和社会保障部教育培训网<a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010502033661" target="_blank" style="text-decoration: none; height: 20px; display: inline-block; line-height: 20px;color:#fff;"><img src="http://jn.ethrss.cn/statics/jiaopei/images/footbq.png" alt="" style="float: left;width:20px;height: 20px;"> 京公网安备 11010502033661号</a>
+                        </p>
+                </div>
+                <div class="pull_right">
+                    <p style="text-align: right;font-size:12px;">京ICP备13009107号-3<br>&nbsp;人力资源和社会保障部教育培训中心网站</p><!--#endeditable-->
                 </div>
             </div>
         </div>
-        <div id="rightPanel">
-            <iframe id="mainFrame" name="mainFrame" width="100%" height="100%" src="" frameborder="0" style="display: block;" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-        </div>
+        <!-- –––––––––––––––[ END FOOTER ]––––––––––––––– -->
 
+    </div>    
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+    <!-- BACK TO TOP                               -->
+    <!-- ––––––––––––––––––––––––––––––––––––––––– -->
+    <div id="backTop" class="back-top is-hidden-sm-down">
+        <i class="fa fa-angle-up" aria-hidden="true"></i>
     </div>
+   
+    <script src="assets/js/jquery-1.12.3.min.js"></script>    
+    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
 
-    <div id="maximizePanelContainer">
-        <iframe id="expandFrame" src="resources/expand.html" width="100%" height="100%" scrolling="no" allowtransparency="true" frameborder="0"></iframe>
-    </div>
+    <!-- Modernizer JS -->
+    <script src="assets/vendors/modernizr/modernizr-2.6.2.min.js"></script>
+    
+    <!-- Owl Carousel -->
+    <script type="text/javascript" src="assets/vendors/owl-carousel/owl.carousel.min.js"></script>
 
+    <!-- FlexSlider -->
+    <script type="text/javascript" src="assets/vendors/flexslider/jquery.flexslider-min.js"></script>
+
+    <!-- Coutdown -->
+    <script type="text/javascript" src="assets/vendors/countdown/jquery.countdown.js"></script>
+    <script type="text/javascript" src="assets/js/main.js"></script>
 </body>
+
 </html>
