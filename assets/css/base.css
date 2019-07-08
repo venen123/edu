@@ -105,7 +105,7 @@ a {
 }
 a:hover,
 a:focus {
-  color: #26cc71;
+  color: #00c0ef;
   text-decoration: none;
 }
 a,
@@ -2345,6 +2345,9 @@ label {
 }
 .color-blue {
   color: #314555 !important;
+}
+.color-light-blue{
+  color: #00c0ef !important;
 }
 .color-white {
   color: #fff !important;
