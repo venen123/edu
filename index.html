@@ -21,6 +21,7 @@
     <!-- Linearicons -->
     <link href="assets/vendors/linearicons/css/linearicons.css" rel="stylesheet">
 
+    <link href="assets/css/swiper.min.css" rel="stylesheet">
     <!-- Owl Carousel -->
     <link href="assets/vendors/owl-carousel/owl.carousel.min.css" rel="stylesheet">
     <link href="assets/vendors/owl-carousel/owl.theme.min.css" rel="stylesheet">
@@ -127,28 +128,26 @@
                     <div class="section deals-header-area">
                         <div class="row row-tb-20">
                             <div class="col-xs-12 col-md-8 col-lg-9">
-                                <div class="header-deals-slider owl-slider" data-loop="true" data-dots="true" data-autoplay="true" data-autoplay-timeout="1000"
-                                    data-smart-speed="1000" data-nav-speed="false" data-nav="true" data-xxs-items="1" data-xxs-nav="true"
-                                    data-xs-items="1" data-xs-nav="true" data-sm-items="1" data-sm-nav="true" data-md-items="1"
-                                    data-md-nav="true" data-lg-items="1" data-lg-nav="true">
-                                    <div class="deal-single panel item">
-                                        <figure class="deal-thumbnail embed-responsive" data-bg-img="assets/images/deals/deal_01.jpg">
+                                <div class="swiper-container" data-swiper-class="swiper01" data-swiper='{"autoplay":true,"pagination":{"el":".swiper-pagination"},"navigation":{"nextEl":".swiper-button-next","prevEl":".swiper-button-prev"}}'>
+                                    <div class="deal-single swiper-wrapper">
+                                        <div class="deal-thumbnail embed-responsive swiper-slide" data-bg-img="assets/images/deals/deal_01.jpg">
                                             <div class="deal-about p-10 pos-a bottom-0 left-0">
                                                 <h3 class="deal-title">
-                                                    <a href="deal_single.html" class="color-light color-h-lighter">青少年编程教育（人工智能编程）</a>
+                                                    <a href="#" class="color-light color-h-lighter">青少年教育指导</a>
                                                 </h3>
                                             </div>
-                                        </figure>
-                                    </div>
-                                    <div class="deal-single panel item">
-                                        <figure class="deal-thumbnail embed-responsive" data-bg-img="assets/images/deals/deal_03.jpg">
+                                        </div>
+                                        <div class="deal-thumbnail embed-responsive swiper-slide" data-bg-img="assets/images/deals/deal_03.jpg">
                                             <div class="deal-about p-10 pos-a bottom-0 left-0">
                                                 <h3 class="deal-title">
-                                                    <a href="deal_single.html" class="color-light color-h-lighter">青少年教育指导</a>
+                                                    <a href="#" class="color-light color-h-lighter">青少年编程教育（人工智能编程）</a>
                                                 </h3>
                                             </div>
-                                        </figure>
+                                        </div>
                                     </div>
+                                    <div class="swiper-pagination"></div>
+                                    <div class="swiper-button-prev swiper-button-white"></div>
+                                    <div class="swiper-button-next swiper-button-white"></div>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-md-4 col-lg-3">
@@ -157,43 +156,43 @@
                                         <li>
                                             <a href="#">
                                                 <font>
-                                                    <i class="fa fa-angle-right"></i>青少年教育指导</font>
+                                                    <i class="fa  fa-play-circle"></i>青少年教育指导</font>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#">
                                                 <font>
-                                                    <i class="fa fa-angle-right"></i>青少年教育指导</font>
+                                                    <i class="fa fa-play-circle"></i>青少年教育指导</font>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#">
                                                 <font>
-                                                    <i class="fa fa-angle-right"></i>3D MAX设计</font>
+                                                    <i class="fa fa-play-circle"></i>3D MAX设计</font>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#">
                                                 <font>
-                                                    <i class="fa fa-angle-right"></i>供应链创新与应用人才培养项目-社区运营管理</font>
+                                                    <i class="fa fa-play-circle"></i>供应链创新与应用人才培养项目-社区运营管理</font>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#">
                                                 <font>
-                                                    <i class="fa fa-angle-right"></i>婚姻家庭咨询（中级）</font>
+                                                    <i class="fa fa-play-circle"></i>婚姻家庭咨询（中级）</font>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#">
                                                 <font>
-                                                    <i class="fa fa-angle-right"></i>青少年教育指导</font>
+                                                    <i class="fa fa-play-circle"></i>青少年教育指导</font>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#">
                                                 <font>
-                                                    <i class="fa fa-angle-right"></i>青少年教育指导</font>
+                                                    <i class="fa fa-play-circle"></i>青少年教育指导</font>
                                             </a>
                                         </li>
 
@@ -205,30 +204,56 @@
 
 
                     <section class="section latest-deals-area ptb-30">
-                        <header class="panel ptb-15 prl-20 pos-r mb-30">
-                            <h3 class="section-title font-18">Latest Deals</h3>
-                            <a class="btn btn-o btn-xs pos-a right-10 pos-tb-center">View All</a>
+                        <header class="ptb-15 prl-20 pos-r mb-30">
+                            <h3 class="section-title font-18">技能培训</h3>
+                            <!-- <a class="btn btn-o btn-xs pos-a right-10 pos-tb-center">more</a> -->
                         </header>
-
-
                         <div class="row row-masnory row-tb-20">
 
-                                <div class="col-sm-6 col-lg-5ths">
-                                    <div class="deal-single panel">
-                                        <figure class="embed-responsive embed-responsive-16by9" data-bg-img="assets/images/deals/deal_01.jpg"></figure>
-                                        <div class="bg-white pt-20 pl-20 pr-15">
-                                            <h4 class="deal-title deal-title-limit mb-10">
-                                                <a href="deal_single.html">青少年编程教育（人工智能编程）个官方官方刚发的</a>
-                                            </h4>
-                                            <ul class="deal-meta list-inline mb-10 color-mid">
-                                                <li>
-                                                    <i class="ico fa fa-calendar mr-10"></i>考核标准：32学时</li>
-                                                <li>
-                                                    <i class="ico fa fa-user mr-10"></i>报名人数：5800</li>
-                                            </ul>
-                                        </div>
+                            <div class="col-sm-6 col-lg-5ths">
+                                <div class="deal-single panel">
+                                    <a href="#">
+                                        <figure class="embed-responsive embed-responsive-16by9" data-bg-img="assets/images/deals/deal_01.jpg">
+
+                                            <div class="grid-overlay">
+                                                <ul>
+                                                    <li>
+                                                        <i class="video-icon"></i>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                        </figure>
+                                    </a>
+                                    <div class="bg-white pt-20 pl-20 pr-15">
+                                        <h4 class="deal-title deal-title-limit mb-10">
+                                            <a href="#">青少年编程教育（人工智能编程）个官方官方刚发的</a>
+                                        </h4>
+                                        <ul class="deal-meta list-inline mb-10 color-mid">
+                                            <li>
+                                                <i class="ico fa fa-calendar mr-10"></i>考核标准：32学时</li>
+                                            <li>
+                                                <i class="ico fa fa-user mr-10"></i>报名人数：5800</li>
+                                        </ul>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-5ths">
+                                <div class="deal-single panel">
+                                    <figure class="embed-responsive embed-responsive-16by9" data-bg-img="assets/images/deals/deal_01.jpg"></figure>
+                                    <div class="bg-white pt-20 pl-20 pr-15">
+                                        <h4 class="deal-title deal-title-limit mb-10">
+                                            <a href="#">青少年编程教育（人工智能编程）个官方官方刚发的</a>
+                                        </h4>
+                                        <ul class="deal-meta list-inline mb-10 color-mid">
+                                            <li>
+                                                <i class="ico fa fa-calendar mr-10"></i>考核标准：32学时</li>
+                                            <li>
+                                                <i class="ico fa fa-user mr-10"></i>报名人数：5800</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-sm-6 col-lg-5ths">
                                 <div class="deal-single panel">
                                     <figure class="embed-responsive embed-responsive-16by9" data-bg-img="assets/images/deals/deal_01.jpg"></figure>
@@ -245,22 +270,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-6 col-lg-5ths">
-                                    <div class="deal-single panel">
-                                        <figure class="embed-responsive embed-responsive-16by9" data-bg-img="assets/images/deals/deal_01.jpg"></figure>
-                                        <div class="bg-white pt-20 pl-20 pr-15">
-                                            <h4 class="deal-title deal-title-limit mb-10">
-                                                <a href="deal_single.html">青少年编程教育（人工智能编程）个官方官方刚发的</a>
-                                            </h4>
-                                            <ul class="deal-meta list-inline mb-10 color-mid">
-                                                <li>
-                                                    <i class="ico fa fa-calendar mr-10"></i>考核标准：32学时</li>
-                                                <li>
-                                                    <i class="ico fa fa-user mr-10"></i>报名人数：5800</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
                             <div class="col-sm-6 col-lg-5ths">
                                 <div class="deal-single panel">
                                     <figure class="embed-responsive embed-responsive-16by9" data-bg-img="assets/images/deals/deal_01.jpg"></figure>
@@ -751,8 +760,7 @@
                     </p>
                     <p>
                         版权所有：中华人民共和国人力资源和社会保障部教育培训网
-                        <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010502033661"
-                            target="_blank" style="text-decoration: none; height: 20px; display: inline-block; line-height: 20px;color:#fff;">
+                        <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010502033661" target="_blank" style="text-decoration: none; height: 20px; display: inline-block; line-height: 20px;color:#fff;">
                             <img src="http://jn.ethrss.cn/statics/jiaopei/images/footbq.png" alt="" style="float: left;width:20px;height: 20px;"> 京公网安备 11010502033661号</a>
                     </p>
                 </div>
@@ -775,6 +783,8 @@
 
     <script src="assets/js/jquery-1.12.3.min.js"></script>
     <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+
+    <script src="assets/js/swiper.min.js"></script>
 
     <!-- Modernizer JS -->
     <script src="assets/vendors/modernizr/modernizr-2.6.2.min.js"></script>

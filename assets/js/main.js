@@ -224,7 +224,22 @@
     /*-------------------------------------
      Carousel slider initiation
     -------------------------------------*/
-    var owl_carousel = function() {
+    var mySwiper = function(){
+      
+        $(".swiper-container").each(function(){
+            var $that = $(this)
+            var swiperClass =  $that.data('swiper-class'); 
+            $that.addClass(swiperClass)
+            var swiperConfig = $("."+swiperClass).data('swiper');            
+           var mySwipers = new Swiper("."+swiperClass, swiperConfig)
+          
+        })
+        
+    }
+   
+
+
+    var owl_carousel = function() {        
         $('.owl-slider').each(function () {           
             var carousel = $(this),
                 autoplay_hover_pause = carousel.data('autoplay-hover-pause'),
@@ -268,7 +283,8 @@
                 navText: ["<i class='fa fa-angle-left' aria-hidden='true'></i>", "<i class='fa fa-angle-right' aria-hidden='true'></i>"],
                 navSpeed: (navSpeed ? navSpeed : false),
                 center: (center ? center : false),
-                responsiveClass: true, 
+                responsiveClass: true,  
+                singleItem:true,                    
                 responsive: {
                     0: {
                         items: ( xxs_items ? xxs_items : (items_general ? items_general : 1)),
@@ -304,8 +320,22 @@
 
         });
     };
-   
 
+    $(document).ready(function() {
+      
+    
+
+    $('.header-deals-slider').owlCarousel({
+        afterMove :moved,
+        items:1
+    })
+
+function moved(){
+    console.log("bb")
+}
+    
+})
+   
     /*-------------------------------------
      Flexslider
     -------------------------------------*/
@@ -387,22 +417,23 @@
        
         $(document).on('ready', function() {
            
-            $('[data-toggle="tooltip"]').tooltip();
-            html_direction();
+           // $('[data-toggle="tooltip"]').tooltip();
+            //html_direction();
             background_color();
             background_image();
-            link_void();
+            //link_void();
             click_back();
             bugfix();
             navbar_js();
-            share_social();
-            add_favorite();
-            owl_carousel();
-            toogle_class();
+            //share_social();
+            //add_favorite();
+            //owl_carousel();
+            mySwiper();
+            //toogle_class();
           
-            data_rating();
-            do_rating();         
-            cart_delete_item();
+            //data_rating();
+            //do_rating();         
+           // cart_delete_item();
         });
         
     /* ================================

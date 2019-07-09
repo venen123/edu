@@ -2347,7 +2347,7 @@ label {
   color: #314555 !important;
 }
 .color-light-blue{
-  color: #00c0ef !important;
+  color: #h3 !important;
 }
 .color-white {
   color: #fff !important;
@@ -2852,12 +2852,34 @@ label {
 /* |–––––––––––[ Background Styles ]–––––––––––| */
 .bg-cover,
 *[data-bg-img] {
+  position: relative;
   background-position: center;
   background-repeat: no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+
+.grid-overlay{  
+  background: url("../images/icons/play.png") no-repeat center center;   
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 1;
+}
+.grid-overlay{
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.grid-overlay:hover {
+  opacity: 1;
 }
 .bg-contain {
   background-size: contain;
