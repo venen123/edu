@@ -1,4 +1,3 @@
-
 /*
 ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
   FRIDAY - Coupons, Deals, Discounts and Promo Codes Template
@@ -17,55 +16,55 @@
 
 
 
-(function($) {
+(function ($) {
 
     "use strict";
 
-    $.fn.hasAttr = function(attr) {  
-       if (typeof attr !== typeof undefined && attr !== false && attr !== undefined) {
+    $.fn.hasAttr = function (attr) {
+        if (typeof attr !== typeof undefined && attr !== false && attr !== undefined) {
             return true;
-       }
-       return false;
+        }
+        return false;
     };
 
     /*-------------------------------------
      Background Image Function
     -------------------------------------*/
-    var background_image = function() {
-        $("[data-bg-img]").each(function() {
+    var background_image = function () {
+        $("[data-bg-img]").each(function () {
             var attr = $(this).attr('data-bg-img');
             if (typeof attr !== typeof undefined && attr !== false && attr !== "") {
-                $(this).css('background-image', 'url('+attr+')');
+                $(this).css('background-image', 'url(' + attr + ')');
             }
-        });  
+        });
     };
 
     /*-------------------------------------
      Background Color Function
     -------------------------------------*/
-    var background_color = function() {
-        $("[data-bg-color]").each(function() {
+    var background_color = function () {
+        $("[data-bg-color]").each(function () {
             var attr = $(this).attr('data-bg-color');
             if (typeof attr !== typeof undefined && attr !== false && attr !== "") {
                 $(this).css('background-color', attr);
             }
-        });  
+        });
     };
 
-    var link_void = function() {
-        $("a[data-prevent='default']").each(function() {
-            $(this).on('click', function(e) {
+    var link_void = function () {
+        $("a[data-prevent='default']").each(function () {
+            $(this).on('click', function (e) {
                 e.preventDefault();
             });
         });
     };
 
-  
+
 
     /*-------------------------------------
      HTML attr direction
     -------------------------------------*/
-    var html_direction = function() {
+    var html_direction = function () {
         var html_tag = $("html"),
             dir = html_tag.attr("dir"),
             directions = ['ltr', 'rtl'];
@@ -75,45 +74,45 @@
             html_tag.attr("dir", directions[0]).addClass(directions[0]);
         }
     };
-    
+
 
     /*-------------------------------------
      CSS fix for IE Mobile
     -------------------------------------*/
-    var bugfix = function() {
+    var bugfix = function () {
         if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
-          var msViewportStyle = document.createElement('style');
-          msViewportStyle.appendChild(
-            document.createTextNode(
-              '@-ms-viewport{width:auto!important}'
-            )
-          );
-          document.querySelector('head').appendChild(msViewportStyle);
+            var msViewportStyle = document.createElement('style');
+            msViewportStyle.appendChild(
+                document.createTextNode(
+                    '@-ms-viewport{width:auto!important}'
+                )
+            );
+            document.querySelector('head').appendChild(msViewportStyle);
         }
     };
 
     /*-------------------------------------
      Toggle Class function
     -------------------------------------*/
-    var toogle_class = function() {
-        $('[data-toggle-class]').each(function(){
+    var toogle_class = function () {
+        $('[data-toggle-class]').each(function () {
             var current = $(this),
                 toggle_event = current.data('toggle-event'),
                 toggle_class = current.data('toggle-class');
 
             if (toggle_event == "hover") {
-                current.on("mouseenter", function() {
+                current.on("mouseenter", function () {
                     if (current.hasClass(toggle_class) === false) {
                         $(this).addClass(toggle_class);
                     }
                 });
-                current.on("mouseleave", function() {
+                current.on("mouseleave", function () {
                     if (current.hasClass(toggle_class) === true) {
                         $(this).removeClass(toggle_class);
                     }
                 });
             }
-            current.on(toggle_event, function() {
+            current.on(toggle_event, function () {
                 $(this).toggleClass(toggle_class);
             });
         });
@@ -123,7 +122,7 @@
     /*-------------------------------------
      Back Top functions
     -------------------------------------*/
-    var back_to_top = function() {
+    var back_to_top = function () {
         var backTop = $('#backTop');
         if (backTop.length) {
             var scrollTrigger = 200,
@@ -135,9 +134,9 @@
             }
         }
     };
-    var click_back = function() {
+    var click_back = function () {
         var backTop = $('#backTop');
-        backTop.on('click', function(e) {
+        backTop.on('click', function (e) {
             $('html,body').animate({
                 scrollTop: 0
             }, 700);
@@ -148,7 +147,7 @@
     /*-------------------------------------
      Navbar Functions
     -------------------------------------*/
-    var navbar_js = function() {
+    var navbar_js = function () {
         $('.dropdown-mega-menu > a, .nav-menu > li:has( > ul) > a').append("<span class=\"indicator\"><i class=\"fa fa-angle-down\"></i></span>");
         $('.nav-menu > li ul > li:has( > ul) > a').append("<span class=\"indicator\"><i class=\"fa fa-angle-right\"></i></span>");
         $(".dropdown-mega-menu, .nav-menu li:has( > ul)").on('mouseenter', function () {
@@ -163,8 +162,8 @@
         });
         $(".dropdown-mega-menu > a, .nav-menu li:has( > ul) > a").on('click', function (e) {
             if ($(window).width() <= 943) {
-                $(this).parent().addClass("active-mobile").children("ul, .mega-menu").slideToggle(150, function() {
-                    
+                $(this).parent().addClass("active-mobile").children("ul, .mega-menu").slideToggle(150, function () {
+
                 });
                 $(this).parent().siblings().removeClass("active-mobile").children("ul, .mega-menu").slideUp(150);
             }
@@ -176,36 +175,35 @@
             e.preventDefault();
         });
     };
-    var navbar_resize_load = function() {
+    var navbar_resize_load = function () {
         $(".nav-bar").addClass('visible-xs');
         $("#header-w1200-h").hide();
         $("#footer").hide();
         if ($(".nav-header").css("display") == "block") {
             $(".nav-bar").addClass('nav-mobile');
             $('.nav-menu').find("li.active").addClass("active-mobile");
-        }
-        else {
+        } else {
             $(".nav-bar").removeClass('nav-mobile');
         }
 
-        if ($(window).width() >= 943) {  
-            $("#header-w1200-h").show();  
-            $("#footer").show();       
+        if ($(window).width() >= 943) {
+            $("#header-w1200-h").show();
+            $("#footer").show();
             $(".dropdown-mega-menu a, .nav-menu li:has( > ul) a").each(function () {
                 $(this).parent().children("ul, .mega-menu").slideUp(0);
             });
             $($(".nav-toggle").data("toggle")).show();
             $('.nav-menu').find("li").removeClass("active-mobile");
-            
+
         }
     };
 
     /*-------------------------------------
      Social Icons Share
     -------------------------------------*/
-    var share_social = function() {
+    var share_social = function () {
         var share_action = $('.deal-actions .share-btn');
-        share_action.on('click',function(){
+        share_action.on('click', function () {
             var share_icons = $(this).children('.share-tooltip');
             share_icons.toggleClass('in');
         });
@@ -214,9 +212,9 @@
     /*-------------------------------------
      Add Deal to Favorite
     -------------------------------------*/
-    var add_favorite = function() {
+    var add_favorite = function () {
         var like_btn = $('.actions .like-deal');
-        like_btn.on('click',function(){
+        like_btn.on('click', function () {
             $(this).toggleClass('favorite');
         });
     };
@@ -224,23 +222,47 @@
     /*-------------------------------------
      Carousel slider initiation
     -------------------------------------*/
-    var mySwiper = function(){
-      
-        $(".swiper-container").each(function(){
+    var mySwiper = function () {
+
+        var windowWith = $(window).width()
+
+        $(".swiper-container").each(function () {
             var $that = $(this)
-            var swiperClass =  $that.data('swiper-class'); 
+            //兼容手机               
+            if (windowWith < 500) {
+                if ($that.data('swiper').slidesPerView) {
+                    $that.data('swiper').slidesPerView = 1;
+                }
+            }
+            var swiperClass = $that.data('swiper-class');
             $that.addClass(swiperClass)
-            var swiperConfig = $("."+swiperClass).data('swiper');            
-           var mySwipers = new Swiper("."+swiperClass, swiperConfig)
-          
+            var swiperConfig = $("." + swiperClass).data('swiper');
+            var mySwipers = new Swiper("." + swiperClass, swiperConfig);
+            if (swiperConfig.id != undefined && swiperConfig.id != "") {
+                var idName = swiperConfig.id;              
+                $('#' + idName + " li").click(function () {
+                    $(this).addClass("active").siblings().removeClass("active");
+                    var index = $(this).data('index')                   
+                    mySwipers.slideTo(index, 500, false); 
+                })
+            }
+
+
+            //console.log(swiperConfig)
+
         })
-        
+
+
+
+
+
+
     }
-   
 
 
-    var owl_carousel = function() {        
-        $('.owl-slider').each(function () {           
+
+    var owl_carousel = function () {
+        $('.owl-slider').each(function () {
             var carousel = $(this),
                 autoplay_hover_pause = carousel.data('autoplay-hover-pause'),
                 loop = carousel.data('loop'),
@@ -270,76 +292,76 @@
                 lg_dots = carousel.data('lg-dots');
 
             carousel.owlCarousel({
-                autoplayHoverPause: autoplay_hover_pause,
-                loop: (loop ? loop : false),
-                items: (items_general ? items_general : 1),               
-                lazyLoad: true,
-                margin: (margin ? margin : 0),
-                autoplay: (autoplay ? autoplay : false),
-                autoplayTimeout: (autoplayTimeout ? autoplayTimeout : 1000),
-                smartSpeed: (smartSpeed ? smartSpeed : 250),
-                dots: (dots_global ? dots_global : false),
-                nav: (nav_general ? nav_general : false),
-                navText: ["<i class='fa fa-angle-left' aria-hidden='true'></i>", "<i class='fa fa-angle-right' aria-hidden='true'></i>"],
-                navSpeed: (navSpeed ? navSpeed : false),
-                center: (center ? center : false),
-                responsiveClass: true,  
-                singleItem:true,                    
-                responsive: {
-                    0: {
-                        items: ( xxs_items ? xxs_items : (items_general ? items_general : 1)),
-                        nav: ( xxs_nav ? xxs_nav : (nav_general ? nav_general : false)),
-                        dots: ( xxs_dots ? xxs_dots : (dots_global ? dots_global : false))
-                    },
-                    480: {
-                        items: ( xs_items ? xs_items : (items_general ? items_general : 1)),
-                        nav: ( xs_nav ? xs_nav : (nav_general ? nav_general : false)),
-                        dots: ( xs_dots ? xs_dots : (dots_global ? dots_global : false))
-                    },
-                    768: {
-                        items: ( sm_items ? sm_items : (items_general ? items_general : 1)),
-                        nav: ( sm_nav ? sm_nav : (nav_general ? nav_general : false)),
-                        dots: ( sm_dots ? sm_dots : (dots_global ? dots_global : false))
-                    },
-                    992: {
-                        items: ( md_items ? md_items : (items_general ? items_general : 1)),
-                        nav: ( md_nav ? md_nav : (nav_general ? nav_general : false)),
-                        dots: ( md_dots ? md_dots : (dots_global ? dots_global : false))
-                    },
-                    1199: {
-                        items: ( lg_items ? lg_items : (items_general ? items_general : 1)),
-                        nav: ( lg_nav ? lg_nav : (nav_general ? nav_general : false)),
-                        dots: ( lg_dots ? lg_dots : (dots_global ? dots_global : false))
+                    autoplayHoverPause: autoplay_hover_pause,
+                    loop: (loop ? loop : false),
+                    items: (items_general ? items_general : 1),
+                    lazyLoad: true,
+                    margin: (margin ? margin : 0),
+                    autoplay: (autoplay ? autoplay : false),
+                    autoplayTimeout: (autoplayTimeout ? autoplayTimeout : 1000),
+                    smartSpeed: (smartSpeed ? smartSpeed : 250),
+                    dots: (dots_global ? dots_global : false),
+                    nav: (nav_general ? nav_general : false),
+                    navText: ["<i class='fa fa-angle-left' aria-hidden='true'></i>", "<i class='fa fa-angle-right' aria-hidden='true'></i>"],
+                    navSpeed: (navSpeed ? navSpeed : false),
+                    center: (center ? center : false),
+                    responsiveClass: true,
+                    singleItem: true,
+                    responsive: {
+                        0: {
+                            items: (xxs_items ? xxs_items : (items_general ? items_general : 1)),
+                            nav: (xxs_nav ? xxs_nav : (nav_general ? nav_general : false)),
+                            dots: (xxs_dots ? xxs_dots : (dots_global ? dots_global : false))
+                        },
+                        480: {
+                            items: (xs_items ? xs_items : (items_general ? items_general : 1)),
+                            nav: (xs_nav ? xs_nav : (nav_general ? nav_general : false)),
+                            dots: (xs_dots ? xs_dots : (dots_global ? dots_global : false))
+                        },
+                        768: {
+                            items: (sm_items ? sm_items : (items_general ? items_general : 1)),
+                            nav: (sm_nav ? sm_nav : (nav_general ? nav_general : false)),
+                            dots: (sm_dots ? sm_dots : (dots_global ? dots_global : false))
+                        },
+                        992: {
+                            items: (md_items ? md_items : (items_general ? items_general : 1)),
+                            nav: (md_nav ? md_nav : (nav_general ? nav_general : false)),
+                            dots: (md_dots ? md_dots : (dots_global ? dots_global : false))
+                        },
+                        1199: {
+                            items: (lg_items ? lg_items : (items_general ? items_general : 1)),
+                            nav: (lg_nav ? lg_nav : (nav_general ? nav_general : false)),
+                            dots: (lg_dots ? lg_dots : (dots_global ? dots_global : false))
+                        }
                     }
-                }
-            },
-           
-        
-        
-        );
+                },
+
+
+
+            );
 
         });
     };
 
-    $(document).ready(function() {
-      
-    
+    $(document).ready(function () {
 
-    $('.header-deals-slider').owlCarousel({
-        afterMove :moved,
-        items:1
+
+
+        $('.header-deals-slider').owlCarousel({
+            afterMove: moved,
+            items: 1
+        })
+
+        function moved() {
+            console.log("bb")
+        }
+
     })
 
-function moved(){
-    console.log("bb")
-}
-    
-})
-   
     /*-------------------------------------
      Flexslider
     -------------------------------------*/
-    var product_slider = function() {
+    var product_slider = function () {
         $('#product_slider_nav').flexslider({
             animation: "slide",
             controlNav: false,
@@ -361,7 +383,7 @@ function moved(){
     /*-------------------------------------
      Stars Rating functions
     -------------------------------------*/
-    var data_rating = function() {
+    var data_rating = function () {
         $('.rating').each(function () {
             var rating = $(this).find('.rating-stars').attr('data-rating'),
                 rating_index = 5 - rating;
@@ -369,7 +391,7 @@ function moved(){
         });
     };
 
-    var do_rating = function() {
+    var do_rating = function () {
         var rating_stars_select = $('.rating .rating-stars.rate-allow');
         rating_stars_select.on('mouseenter', function () {
             $(this).find('i').removeClass('star-active');
@@ -383,28 +405,27 @@ function moved(){
                 rating_count_select = $(this).parent().parent().find('.rating-count'),
                 reviews_num = parseInt(rating_count_select.text(), 10),
                 rate_value = num_stars - rating_index;
-            reviews_num ++;
+            reviews_num++;
 
             $(this).parent().attr('data-rating', rate_value);
             data_rating();
             if ($(this).parent().attr('data-review')) {
                 return false;
-            }
-            else {
+            } else {
                 $(this).parent().attr('data-review', '1');
                 rating_count_select.text(reviews_num);
             }
         });
     };
 
-   
+
 
     /*-------------------------------------
      Delete Item From Cart
     -------------------------------------*/
-    var cart_delete_item = function(){
+    var cart_delete_item = function () {
         var close = $("#cart_list").find(".close[data-dismiss='alert']");
-        close.on('click', function(){
+        close.on('click', function () {
             if (confirm("Do You Really Want to Delete This item ?") === false) {
                 return false;
             }
@@ -414,52 +435,52 @@ function moved(){
     /* ================================
        When document is ready, do
     ================================= */
-       
-        $(document).on('ready', function() {
-           
-           // $('[data-toggle="tooltip"]').tooltip();
-            //html_direction();
-            background_color();
-            background_image();
-            //link_void();
-            click_back();
-            bugfix();
-            navbar_js();
-            //share_social();
-            //add_favorite();
-            //owl_carousel();
-            mySwiper();
-            //toogle_class();
-          
-            //data_rating();
-            //do_rating();         
-           // cart_delete_item();
-        });
-        
+
+    $(document).on('ready', function () {
+
+        // $('[data-toggle="tooltip"]').tooltip();
+        //html_direction();
+        background_color();
+        background_image();
+        //link_void();
+        click_back();
+        bugfix();
+        navbar_js();
+        //share_social();
+        //add_favorite();
+        //owl_carousel();
+        mySwiper();
+        //toogle_class();
+
+        //data_rating();
+        //do_rating();         
+        // cart_delete_item();
+    });
+
     /* ================================
        When document is loading, do
     ================================= */
-        
-        $(window).on('load', function() {          
-            navbar_resize_load();
-            product_slider();
-        }); 
+
+    $(window).on('load', function () {
+        navbar_resize_load();
+        product_slider();
+    });
 
     /* ================================
        When Window is resizing, do
     ================================= */
-        
-        $(window).on('resize', function() {
-            navbar_resize_load();
-        });
+
+    $(window).on('resize', function () {
+        navbar_resize_load();
+    });
 
     /* ================================
        When document is Scrollig, do
     ================================= */
-        
-        $(window).on('scroll', function() {
-            back_to_top();
-        });
 
-    
+    $(window).on('scroll', function () {
+        back_to_top();
+    });
+
+
 })(jQuery);

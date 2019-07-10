@@ -2047,3 +2047,92 @@
   border: 1px solid red;
   
 }
+.coupon-item{
+  padding:0 10px;
+}
+
+@media (max-width: 767px) {
+  .coupon-item {
+    margin-right: 0;
+  }
+}
+.swiper-pagination-bullet{
+  background: #fff;
+}
+/* video style */
+.videoGroup{
+  width: 100%; 
+  height: 487px;
+  display: flex;
+  flex-flow: row;
+
+  background-color: #000; 	
+}
+.videoGroup .video{
+  border: 1px solid #141414; 
+  margin: 12px;
+}
+.play-list{	
+  width: 328px;
+  height: 487px;
+  background: #1e1e1e;
+}
+.play-list header{
+  border-bottom: 1px solid #3d3d3d;
+  width: 100%;
+  height: 40px;
+}
+.play-list header h4{
+  padding:10px 25px;
+  color: #fff;
+  width: 130px;
+  height: 40px;
+  background-color: #3d3d3d;
+}
+.play-list ul{
+  height: 427px;		
+  overflow-y: visible;
+  overflow:scroll;		
+  
+}
+.play-list ul li{
+  width: 90%;
+  height: 85px;
+  text-align: left;
+  padding-top: 15px;	
+  line-height: 25px;
+  margin-left: 10px;
+  font-size: 15px;
+  color: #686868;
+  border-bottom: 1px solid #323232;
+  overflow: hidden;
+}
+.play-list ul li font{
+  width:160px;
+  height:50px;		
+  display:block;
+  overflow:hidden;
+  float:left;
+}
+.play-list ul li:last-child{
+  border-bottom:none;
+}
+.play-list ul li i{
+  width:17px;
+  height: 100%;
+  line-height: 50px;
+  font-size: 20px;
+  margin-right: 10px;		
+}
+.play-list header{
+  border-bottom: 1px solid #3d3d3d;
+  width: 100%;
+  height: 40px;
+}
+.play-list header h4{
+  padding:10px 25px;
+  color: #fff;
+  width: 130px;
+  height: 40px;
+  background-color: #3d3d3d;
+}
